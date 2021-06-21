@@ -86,7 +86,7 @@ public class UserRepositoryTests {
 	
 	@Test
 	public void testDeleteUser() {
-		Integer userId = 2;
+		Integer userId = 4;
 		repo.deleteById(userId);
 	}
 	
@@ -96,5 +96,27 @@ public class UserRepositoryTests {
 		User user = repo.getUserByEmail(email);
 		
 		assertThat(user).isNotNull();
+	}
+	
+	@Test
+	public void testCountById() {
+		Integer id = 1;
+		Long countById = repo.countById(id);
+		
+		assertThat(countById).isNotNull().isGreaterThan(0);
+	}
+	
+	@Test
+	public void testDisableUser() {
+		Integer id = 1;
+		repo.updateEnabledStatus(id, false);
+		
+	}
+	
+	@Test
+	public void testEnableUser() {
+		Integer id = 1;
+		repo.updateEnabledStatus(id, true);
+		
 	}
 }
