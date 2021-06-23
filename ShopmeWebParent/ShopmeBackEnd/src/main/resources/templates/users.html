@@ -17,94 +17,97 @@
 	th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </head>
 <body>
-	<div class="container-fluid"></div>
-	<div>
-		<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
-			<a class="navbar-brand" th:href="@{/}"> <img alt=""
-				th:src="@{/images/ShopmeAdminSmall.png}" />
-			</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#topNavbar">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="topNavbar">
-				<ul class="navbar-nav">
-					<li class="nav-item"><a class="nav-link" th:href="@{/users}">Users</a>
-					</li>
-					<li class="nav-item"><a class="nav-link"
-						th:href="@{/Categories}">Categories</a></li>
-					<li class="nav-item"><a class="nav-link" th:href="@{/brands}">Brands</a>
-					</li>
-					<li class="nav-item"><a class="nav-link"
-						th:href="@{/products}">Products</a></li>
-					<li class="nav-item"><a class="nav-link"
-						th:href="@{/customers}">Customers</a></li>
-					<li class="nav-item"><a class="nav-link"
-						th:href="@{/shipping}">Shipping</a></li>
-					<li class="nav-item"><a class="nav-link" th:href="@{/report}">Sales
-							Report</a></li>
-					<li class="nav-item"><a class="nav-link"
-						th:href="@{/articles}">Articles</a></li>
-					<li class="nav-item"><a class="nav-link" th:href="@{/menus}">Menus</a>
-					</li>
-					<li class="nav-item"><a class="nav-link"
-						th:href="@{/settings}">Settings</a></li>
-				</ul>
-			</div>
-		</nav>
-	</div>
-	<div>
-		<h2>Manage Users</h2>
-		<a th:href="@{/users/new}"
-			class="fas fa-user-plus fa-2x icon-dark mr-2"></a> <a
-			th:href="@{/users/export/csv}"
-			class="fas fa-file-csv fa-2x icon-dark mr-2"></a> <a
-			th:href="@{/users/export/excel}"
-			class="fas fa-file-excel fa-2x icon-dark mr-2"></a> <a
-			th:href="@{/users/export/pdf}"
-			class="fas fa-file-pdf fa-2x icon-dark mr-2"></a>
-	</div>
+	<div class="container-fluid">
+		<div>
+			<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+				<a class="navbar-brand" th:href="@{/}"> <img alt=""
+					th:src="@{/images/ShopmeAdminSmall.png}" />
+				</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse"
+					data-target="#topNavbar">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="topNavbar">
+					<ul class="navbar-nav">
+						<li class="nav-item"><a class="nav-link" th:href="@{/users}">Users</a>
+						</li>
+						<li class="nav-item"><a class="nav-link"
+							th:href="@{/Categories}">Categories</a></li>
+						<li class="nav-item"><a class="nav-link" th:href="@{/brands}">Brands</a>
+						</li>
+						<li class="nav-item"><a class="nav-link"
+							th:href="@{/products}">Products</a></li>
+						<li class="nav-item"><a class="nav-link"
+							th:href="@{/customers}">Customers</a></li>
+						<li class="nav-item"><a class="nav-link"
+							th:href="@{/shipping}">Shipping</a></li>
+						<li class="nav-item"><a class="nav-link" th:href="@{/report}">Sales
+								Report</a></li>
+						<li class="nav-item"><a class="nav-link"
+							th:href="@{/articles}">Articles</a></li>
+						<li class="nav-item"><a class="nav-link" th:href="@{/menus}">Menus</a>
+						</li>
+						<li class="nav-item"><a class="nav-link"
+							th:href="@{/settings}">Settings</a></li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+		<div>
+			<h2>Manage Users</h2>
+			<a th:href="@{/users/new}"
+				class="fas fa-user-plus fa-2x icon-dark mr-2"></a> <a
+				th:href="@{/users/export/csv}"
+				class="fas fa-file-csv fa-2x icon-dark mr-2"></a> <a
+				th:href="@{/users/export/excel}"
+				class="fas fa-file-excel fa-2x icon-dark mr-2"></a> <a
+				th:href="@{/users/export/pdf}"
+				class="fas fa-file-pdf fa-2x icon-dark mr-2"></a>
+		</div>
 
-	<div th:if="${message != null}" class="alert alert-success text-center">
-		[[${message}]]</div>
+		<div th:if="${message != null}"
+			class="alert alert-success text-center">[[${message}]]</div>
 
-	<div>
-		<form th:action="@{/users/page/1}" class="form-inline m-3">
-			<input type="hidden" name="sortField" th:value="${sortField}" /> <input
-				type="hidden" name="sortDir" th:value="${sortDir}" /> Filter:&nbsp;
-			<input type="search" name="keyword" th:value="${keyword}"
-				class="form-control" required /> &nbsp;&nbsp;
-			<button type="submit" class="btn btn-primary">
-				<i class="fas fa-search"></i>
-			</button>
-			&nbsp;&nbsp;
-			<button type="button" class="btn btn-secondary"
-				onclick="clearFilter()">
-				<i class="fas fa-eraser"></i>
-			</button>
-		</form>
-	</div>
+		<div>
+			<form th:action="@{/users/page/1}" class="form-inline m-3">
+				<input type="hidden" name="sortField" th:value="${sortField}" /> <input
+					type="hidden" name="sortDir" th:value="${sortDir}" />
+				Filter:&nbsp; <input type="search" name="keyword"
+					th:value="${keyword}" class="form-control" required />
+				&nbsp;&nbsp;
+				<button type="submit" class="btn btn-primary">
+					<i class="fas fa-search"></i>
+				</button>
+				&nbsp;&nbsp;
+				<button type="button" class="btn btn-secondary"
+					onclick="clearFilter()">
+					<i class="fas fa-eraser"></i>
+				</button>
+			</form>
+		</div>
 
-	<div class="full-details">
-		<table
-			class="table table-bordered table-striped table-hover table-responsive-xl">
-			<thead class="thead-dark">
-				<tr>
-					<th class="hideable-column">
+		<div class="full-details">
+			<table
+				class="table table-bordered table-striped table-hover table-responsive-xl">
+				<thead class="thead-dark">
+					<tr>
+						<th class="hideable-column">
 						<th th:replace="fragments :: column_link('id','User ID', 'tag')" />
-					</th>
-					<th>Photos</th>
+						</th>
+						<th>Photos</th>
 
-					<th class="hideable-column">
-						<th th:replace="fragments :: column_link('email','Email', 'tag')" />
-					</th>
-					<th th:replace="fragments :: column_link('firstName','First Name', 'none')" />
+						<th class="hideable-column"></th>
+					<th
+							th:replace="fragments :: column_link('firstName','First Name
+						', 'none')" />
 
-					<th th:replace="fragments :: column_link('lastName','Last Name', 'none')" />
+					<th
+							th:replace="fragments :: column_link('lastName','Last Name', 'none')" />
 
 					<th>Roles</th>
 
-					<th th:replace="fragments :: column_link('enabled','Enabled', 'none')" />
+					<th
+							th:replace="fragments :: column_link('enabled','Enabled', 'none')" />
 
 					<th></th>
 				</tr>
@@ -113,26 +116,27 @@
 				<tr th:each="user: ${listUsers}">
 					<td class="hideable-column">[[${user.id}]]</td>
 					<td><span th:if="${user.photos == null}"
-						class="fas fa-portrait fa-3x icon-silver"></span> <img
-						th:if="${user.photos != null}"
-						th:src="@{${user.getPhotosImagePath}}" style="width: 100px">
+							class="fas fa-portrait fa-3x icon-silver"></span> <img
+							th:if="${user.photos != null}"
+							th:src="@{${user.getPhotosImagePath}}" style="width: 100px">
 					</td>
 					<td class="hideable-column">[[${user.email}]]</td>
 					<td>[[${user.firstName}]]</td>
 					<td>[[${user.lastName}]]</td>
 					<td>[[${user.roles}]]</td>
 					<td><a th:if="${user.enabled == true}"
-						class="fas fa-check-circle fa-2x icon-green"
-						th:href="@{'/users/' + ${user.id} + '/enabled/false'}"
-						title="Disable this user"></a> <a th:if="${user.enabled == false}"
-						class="fas fa-circle fa-2x icon-dark"
-						th:href="@{'/users/' + ${user.id} + '/enabled/true'}"
-						title="Enable this user"></a></td>
+							class="fas fa-check-circle fa-2x icon-green"
+							th:href="@{'/users/' + ${user.id} + '/enabled/false'}"
+							title="Disable this user"></a> <a
+							th:if="${user.enabled == false}"
+							class="fas fa-circle fa-2x icon-dark"
+							th:href="@{'/users/' + ${user.id} + '/enabled/true'}"
+							title="Enable this user"></a></td>
 					<td><a class="fas fa-edit fa-2x icon-green"
-						th:href="@{'/users/edit/' + ${user.id}}" title="Edit this user"></a>
+							th:href="@{'/users/edit/' + ${user.id}}" title="Edit this user"></a>
 						&nbsp; <a class="fas fa-trash fa-2x icon-dark link-delete"
-						th:href="@{'/users/delete/' + ${user.id}}" th:userId=${user.id}
-						title="Delete this user"></a></td>
+							th:href="@{'/users/delete/' + ${user.id}}" th:userId=${user.id}
+							title="Delete this user"></a></td>
 				</tr>
 			</tbody>
 		</table>
@@ -142,28 +146,28 @@
 		<div th:each="user: ${listUsers}" class="row m-1">
 			<div class="col-4">
 				<span th:if="${user.photos == null}"
-					class="fas fa-portrait fa-3x icon-silver"></span> <img
-					th:if="${user.photos != null}"
-					th:src="@{${user.getPhotosImagePath}}" style="width: 100px">
+						class="fas fa-portrait fa-3x icon-silver"></span> <img
+						th:if="${user.photos != null}"
+						th:src="@{${user.getPhotosImagePath}}" style="width: 100px">
 			</div>
 			<div class="col-8">
 				<div>[[${user.fullName}]]</div>
 				<div>[[${user.roles}]]</div>
 				<div class="mt-2">
 					<a th:if="${user.enabled == true}"
-						class="fas fa-check-circle fa-2x icon-green"
-						th:href="@{'/users/' + ${user.id} + '/enabled/false'}"
-						title="Disable this user"></a> <a th:if="${user.enabled == false}"
-						class="fas fa-circle fa-2x icon-dark"
-						th:href="@{'/users/' + ${user.id} + '/enabled/true'}"
-						title="Enable this user"></a>
+							class="fas fa-check-circle fa-2x icon-green"
+							th:href="@{'/users/' + ${user.id} + '/enabled/false'}"
+							title="Disable this user"></a> <a
+							th:if="${user.enabled == false}"
+							class="fas fa-circle fa-2x icon-dark"
+							th:href="@{'/users/' + ${user.id} + '/enabled/true'}"
+							title="Enable this user"></a>
 						&nbsp; 
-						<a
-						class="fas fa-edit fa-2x icon-green"
-						th:href="@{'/users/edit/' + ${user.id}}" title="Edit this user"></a>
+						<a class="fas fa-edit fa-2x icon-green"
+							th:href="@{'/users/edit/' + ${user.id}}" title="Edit this user"></a>
 					&nbsp; <a class="fas fa-trash fa-2x icon-dark link-delete"
-						th:href="@{'/users/delete/' + ${user.id}}" th:userId=${user.id}
-						title="Delete this user"></a>
+							th:href="@{'/users/delete/' + ${user.id}}" th:userId=${user.id}
+							title="Delete this user"></a>
 				</div>
 			</div>
 			<div>&nbsp;</div>
@@ -183,26 +187,26 @@
 		<nav>
 			<ul class="pagination justify-content-center flex-wrap">
 				<li
-					th:class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
+						th:class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
 					<a th:replace="fragments :: page_link(1,'First')"></a>
 				</li>
 				<li
-					th:class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
+						th:class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
 					<a
-					th:replace="fragments :: page_link(${currentPage - 1},'Previous')"></a>
+						th:replace="fragments :: page_link(${currentPage - 1},'Previous')"></a>
 				</li>
 
 				<li
-					th:class="${currentPage != i ? 'page-item' : 'page-item active'}"
-					th:each="i : ${#numbers.sequence(1,totalPages)}"><a
-					th:replace="fragments :: page_link(${i}, ${i})"></a></li>
+						th:class="${currentPage != i ? 'page-item' : 'page-item active'}"
+						th:each="i : ${#numbers.sequence(1,totalPages)}"><a
+						th:replace="fragments :: page_link(${i}, ${i})"></a></li>
 
 				<li
-					th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
+						th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
 					<a th:replace="fragments :: page_link(${currentPage + 1},'Next')"></a>
 				</li>
 				<li
-					th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
+						th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
 					<a th:replace="fragments :: page_link(${totalPages},'Last')"></a>
 				</li>
 			</ul>
@@ -233,7 +237,7 @@
 	<div class="text-center">
 		<p>Shopme Control Panel - Copyright &copy; - Shopme</p>
 	</div>
-	</div>
+</div>
 	<script type="text/javascript">
 	$(document).ready(function(){
 		$(".link-delete").on("click",function(e){
