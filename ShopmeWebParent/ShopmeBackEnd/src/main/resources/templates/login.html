@@ -16,8 +16,12 @@
 		<img alt="" th:src="@{/images/ShopmeAdminBig.png}">
 	</div>
 	
-	<form action="@{/login}" method="post">
-		<div class="border border-secondary rounded p-3" style="max-width: 350px; margin: 0 auto">
+	<form th:action="@{/login}" method="post" style="max-width: 350px; margin: 0 auto">
+		<div th:if="${param.error}">
+			<p class="text-danger">[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]</p>
+		</div>
+	
+		<div class="border border-secondary rounded p-3" >
 			<p>Access to Shopme Control Panel</p>
 			<p>
 				<input type="email" name="email" class="form-control" placeholder="E-mail" required />
