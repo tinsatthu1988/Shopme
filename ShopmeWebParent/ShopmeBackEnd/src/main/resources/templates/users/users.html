@@ -51,7 +51,7 @@
 						<th>Photos</th>
 
 						<th class="hideable-column">
-							<th th:replace="fragments :: column_link('id','E-mail', 'tag')" />
+							<th th:replace="fragments :: column_link('email','E-mail', 'tag')" />
 						</th>
 						
 						<th th:replace="fragments :: column_link('firstName','First Name', 'none')" />
@@ -195,7 +195,6 @@
 			e.preventDefault();
 			link = $(this);
 			userId = link.attr("userId");
-			//alert($(this).attr("href"));
 			$("#yesButton").attr("href",link.attr("href"));
 			$("#confirmText").text("Are you sure you want to delete this user ID " + userId + "?");
 			$("#confirmModal").modal();
