@@ -34,9 +34,30 @@
 		></span>
 	</th>
 	
-	<a 
-		th:fragment="page_link(pageNum, Label)"
+	<a th:fragment="page_link(pageNum, Label)"
 		class="page-link" 
-		th:href="@{'/users/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">[[${Label}]]</a>
+		th:href="@{'/users/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">[[${Label}]]
+	</a>
+	
+	<div th:fragment= "category_status">
+		<a 		
+			th:if="${cat.enabled == true}" class="fas fa-check-circle fa-2x icon-green"
+			title="Disable this category" href="">
+		</a> 
+		<a
+			th:if="${cat.enabled == false}" class="fas fa-circle fa-2x icon-dark"
+			title="Enable this category" href="">
+		</a>
+	</div>
+	
+	<div th:fragment= "category_actions">
+		<a class="fas fa-edit fa-2x icon-green"
+			title= "Edit this user" href="">
+		</a>
+		&nbsp; 
+		<a class="fas fa-trash fa-2x icon-dark link-delete"
+			title="Delete this category" href="">
+		</a>
+	</div>
 </body>
 </html>
