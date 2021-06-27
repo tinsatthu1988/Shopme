@@ -52,7 +52,7 @@
 	
 	<div th:fragment= "category_actions">
 		<a class="fas fa-edit fa-2x icon-green"
-			title= "Edit this user" href="">
+			title= "Edit this user" th:href="@{'/categories/edit/' + ${cat.id}}">
 		</a>
 		&nbsp; 
 		<a class="fas fa-trash fa-2x icon-dark link-delete"
