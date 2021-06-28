@@ -102,4 +102,20 @@ public class CategoryController {
 
 	}
 	
+	@GetMapping("/categories/delete/{id}")
+	public String deleteCategory(@PathVariable(name = "id") Integer id, RedirectAttributes redirectAttributes) {
+		try {
+			service.delete(id);
+			
+			String categoryDir = "../category-images/" + id;
+			FileUploadUtil.removeDir(categoryDir);
+			
+			redirectAttributes.addFlashAttribute("message", "The category ID " + id + " has been deleted successfully");
+		} catch (CategoryNotFoundException e) {
+			redirectAttributes.addFlashAttribute("message", e.getMessage());
+		}
+		return "redirect:/categories";
+
+	}
+	
 }
