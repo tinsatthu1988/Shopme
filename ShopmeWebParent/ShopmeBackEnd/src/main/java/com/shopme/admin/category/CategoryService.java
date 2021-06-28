@@ -169,4 +169,8 @@ public class CategoryService {
 		sortedChildren.addAll(children);
 		return sortedChildren;
 	}
+	
+	public void updateCategoryEnabledStatus(Integer id, boolean enabled) {
+		repo.updateEnabledStatus(id, enabled);
+	}
 }

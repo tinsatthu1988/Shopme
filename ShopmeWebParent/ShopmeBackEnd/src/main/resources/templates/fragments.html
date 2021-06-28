@@ -42,11 +42,11 @@
 	<div th:fragment= "category_status">
 		<a 		
 			th:if="${cat.enabled == true}" class="fas fa-check-circle fa-2x icon-green"
-			title="Disable this category" href="">
+			title="Disable this category" th:href="@{'/categories/' + ${cat.id} + '/enabled/false'}">
 		</a> 
 		<a
 			th:if="${cat.enabled == false}" class="fas fa-circle fa-2x icon-dark"
-			title="Enable this category" href="">
+			title="Enable this category" th:href="@{'/categories/' + ${cat.id} + '/enabled/true'}">
 		</a>
 	</div>
 	
@@ -56,7 +56,7 @@
 		</a>
 		&nbsp; 
 		<a class="fas fa-trash fa-2x icon-dark link-delete"
-			title="Delete this category" href="">
+			title="Delete this category" th:href="@{'/categories/delete/' + ${cat.id}}" th:catId="${cat.id}">
 		</a>
 	</div>
 </body>
