@@ -173,4 +173,8 @@ public class Category {
 	@javax.persistence.Transient
 	private boolean hasChildren; 
 	
+	@Override
+	public String toString() {
+		return this.name;
+	}
 }
