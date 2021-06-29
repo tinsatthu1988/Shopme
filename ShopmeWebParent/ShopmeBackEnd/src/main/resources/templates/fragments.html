@@ -39,7 +39,7 @@
 		th:href="@{${moduleURL} + '/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">[[${Label}]]
 	</a>
 	
-	<div th:fragment= "category_status">
+	<div th:fragment= "category_status" th:remove="tag">
 		<a 		
 			th:if="${cat.enabled == true}" class="fas fa-check-circle fa-2x icon-green"
 			title="Disable this category" th:href="@{'/categories/' + ${cat.id} + '/enabled/false'}">
