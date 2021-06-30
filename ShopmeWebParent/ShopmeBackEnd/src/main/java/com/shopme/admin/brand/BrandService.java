@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.shopme.common.entity.Brand;
+import com.shopme.common.entity.User;
 
 
 @Service
@@ -40,5 +41,19 @@ public class BrandService {
 			throw new BrandNotFoundException("Could not find any brand with ID " + id);
 		}
 		repo.deleteById(id);
+	}
+	
+	public String checkUnique(Integer id, String name) {
+		boolean isCreatingNew = (id==null || id == 0);
+		Brand brandByName = repo.findByName(name);
+		
+		if(isCreatingNew) {
+			if(brandByName != null) return "Duplicate";
+		}else {
+			if(brandByName != null && brandByName.getId() != id) {
+				return "Duplicate";
+			}
+		}		
+		return "OK";
 	}
 }
