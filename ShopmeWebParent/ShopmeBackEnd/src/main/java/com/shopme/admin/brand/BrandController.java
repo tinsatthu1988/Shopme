@@ -82,7 +82,7 @@ public class BrandController {
 	}
 	
 	@PostMapping("/brands/save")
-	public String saveCategory(Brand brand,
+	public String saveBrand(Brand brand,
 				@RequestParam("fileImage") MultipartFile multipartFile,
 				RedirectAttributes redirectAttributes) throws IOException {
 		if(!multipartFile.isEmpty()) {
@@ -104,7 +104,7 @@ public class BrandController {
 	}
 	
 	@GetMapping("/brands/edit/{id}")
-	public String editUser(@PathVariable(name = "id") Integer id, Model model, RedirectAttributes redirectAttributes) {
+	public String editBrand(@PathVariable(name = "id") Integer id, Model model, RedirectAttributes redirectAttributes) {
 		try {
 			Brand brand = brandService.get(id);
 			List<Category> listCategories = categoryService.listCategoriesUserdInForm();
@@ -121,7 +121,7 @@ public class BrandController {
 	}
 	
 	@GetMapping("/brands/delete/{id}")
-	public String deleteCategory(@PathVariable(name = "id") Integer id, RedirectAttributes redirectAttributes) {
+	public String deleteBrand(@PathVariable(name = "id") Integer id, RedirectAttributes redirectAttributes) {
 		try {
 			brandService.delete(id);
 			
