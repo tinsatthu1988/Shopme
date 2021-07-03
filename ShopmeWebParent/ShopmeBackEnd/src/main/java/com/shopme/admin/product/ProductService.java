@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.shopme.common.entity.Brand;
 import com.shopme.common.entity.Product;
 
 @Service
@@ -33,5 +34,23 @@ public class ProductService {
 		product.setUpdatedTime(new Date());
 		
 		return repo.save(product);
+	}
+	
+	public String checkUnique(Integer id, String name) {
+		boolean isCreatingNew = (id==null || id == 0);
+		Product productByName = repo.findByName(name);
+		
+		if(isCreatingNew) {
+			if(productByName != null) return "Duplicate";
+		}else {
+			if(productByName != null && productByName.getId() != id) {
+				return "Duplicate";
+			}
+		}		
+		return "OK";
+	}
+	
+	public void updateProductEnabledStatus(Integer id, boolean enabled) {
+		repo.updateEnabledStatus(id, enabled);
 	}
 }

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -22,6 +23,7 @@ import com.shopme.common.entity.Category;
 
 
 @Controller
+@Transactional
 public class CategoryController {
 	@Autowired
 	private CategoryService service;
