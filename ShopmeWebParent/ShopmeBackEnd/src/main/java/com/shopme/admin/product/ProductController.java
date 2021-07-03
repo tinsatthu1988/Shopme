@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.shopme.admin.FileUploadUtil;
 import com.shopme.admin.brand.BrandService;
+import com.shopme.admin.category.CategoryNotFoundException;
 import com.shopme.common.entity.Brand;
 import com.shopme.common.entity.Product;
 
@@ -70,6 +71,18 @@ public class ProductController {
 		String status = enabled ? "enabled" : "disabled";
 		String message = "The product ID " + id + " has been " + status;
 		redirectAttributes.addFlashAttribute("message", message);
+		return "redirect:/products";
+	}
+	
+	@GetMapping("/products/delete/{id}")
+	public String deleteCategory(@PathVariable(name = "id") Integer id, RedirectAttributes redirectAttributes) throws ProductNotFoundException {
+		try {
+			productService.delete(id);;
+			
+			redirectAttributes.addFlashAttribute("message", "The product ID " + id + " has been deleted successfully");
+		} catch (ProductNotFoundException e) {
+			redirectAttributes.addFlashAttribute("message", e.getMessage());
+		}
 		return "redirect:/products";
 
 	}

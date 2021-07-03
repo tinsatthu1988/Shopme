@@ -63,12 +63,12 @@
 	<div th:replace="fragments :: footer"></div>
 </div>
 <script type="text/javascript">
-	moduleURL = "[[@{/brands}]]";
+	moduleURL = "[[@{/products}]]";
 	
 	$(document).ready(function(){
 		$(".link-delete").on("click",function(e){
 			e.preventDefault();
-			showDeleteConfirmModal($(this),'brand');
+			showDeleteConfirmModal($(this),'product');
 		});
 	});
 </script>
