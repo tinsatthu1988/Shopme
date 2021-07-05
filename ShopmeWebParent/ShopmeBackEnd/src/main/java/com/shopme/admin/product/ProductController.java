@@ -1,6 +1,7 @@
 package com.shopme.admin.product;
 
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -20,6 +21,7 @@ import com.shopme.admin.FileUploadUtil;
 import com.shopme.admin.brand.BrandService;
 import com.shopme.admin.category.CategoryNotFoundException;
 import com.shopme.common.entity.Brand;
+import com.shopme.common.entity.Category;
 import com.shopme.common.entity.Product;
 
 @Controller
@@ -58,10 +60,13 @@ public class ProductController {
 	@PostMapping("/products/save")
 	public String saveProduct(Product product, RedirectAttributes ra,
 			@RequestParam("fileImage") MultipartFile mainImageMultipart,
-			@RequestParam("extraImage") MultipartFile[] extraImageMultiparts
+			@RequestParam("extraImage") MultipartFile[] extraImageMultiparts,
+			@RequestParam(name="detailNames", required = false) String[] detailNames,
+			@RequestParam(name="detailValues", required = false) String[] detailValues
 			) throws IOException  {
 		setMainImageName(mainImageMultipart, product);
 		setExtraImageName(extraImageMultiparts, product);
+		setProductDetails(detailNames, detailValues, product);
 			
 		Product savedProduct = productService.save(product);
 		
@@ -72,6 +77,19 @@ public class ProductController {
 		return "redirect:/products";
 	}
 	
+	private void setProductDetails(String[] detailNames, String[] detailValues, Product product) {
+		if(detailNames == null || detailNames.length == 0) return;
+		
+		for (int i = 0; i < detailNames.length; i++) {
+			String name = detailNames[i];
+			String value = detailValues[i];
+			
+			if(!name.isEmpty() && !value.isEmpty()) {
+				product.addDetails(name, value);
+			}
+		}
+	}
+
 	private void saveUploadedImages(MultipartFile mainImageMultipart, MultipartFile[] extraImageMultiparts,
 			Product savedProduct) throws IOException {
 		if(!mainImageMultipart.isEmpty()) {
@@ -138,6 +156,27 @@ public class ProductController {
 			redirectAttributes.addFlashAttribute("message", e.getMessage());
 		}
 		return "redirect:/products";
+	}
+	
+	@GetMapping("/products/edit/{id}")
+	public String editProduct(@PathVariable(name = "id") Integer id, Model model, RedirectAttributes redirectAttributes) {
+		try {
+			Product product = productService.get(id);
+			List<Brand> listBrands = brandService.listAll();
+			Integer numberOfExistingExtraImages = product.getImages().size();
+
+			model.addAttribute("product", product);
+			model.addAttribute("listBrands", listBrands);
+			model.addAttribute("pageTitle", "Edit Product (ID: " + id + ")");
+			model.addAttribute("numberOfExistingExtraImages", numberOfExistingExtraImages);
+			
+			
+
+			return "products/product_form";
+		} catch (ProductNotFoundException e) {
+			redirectAttributes.addFlashAttribute("message", e.getMessage());
+			return "redirect:/products";
+		}
 
 	}
 }
