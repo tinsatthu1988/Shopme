@@ -7,6 +7,7 @@
 	<div th:fragment="content" id="divProductDetails">
 		<th:block th:each="detail, status : ${product.details}">
 			<div class="form-inline" th:id="'divDetail' + ${status.index}">
+				<input type="hidden" name="detailIDs" th:value="${detail.id}" />
 				<label class="m-3">Name:</label>
 				<input type="text" name="detailNames" class="form-control w-25" maxlength="255" 
 					th:value="${detail.name}"/>
@@ -18,6 +19,7 @@
 			</div>
 		</th:block>
 		<div class="form-inline" th:id="'divDetail' + ${#lists.size(product.details)}">
+			<input type="hidden" name="detailIDs" value="0" />
 			<label class="m-3">Name:</label>
 			<input type="text" name="detailNames" class="form-control w-25" maxlength="255" />
 			<label class="m-3">Value:</label>

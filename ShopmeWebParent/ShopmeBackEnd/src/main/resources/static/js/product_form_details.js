@@ -12,6 +12,7 @@ function addNextDetailSection(){
 
 	htmlDetailSection = `
 		<div class="form-inline" id="divDetail${divDetailCount}">
+			<input type="hidden" name="detailIDs" value="0" />
 			<label class="m-3">Name:</label>
 			<input type="text" name="detailNames" class="form-control w-25" maxlength="255" />
 			<label class="m-3">Value:</label>

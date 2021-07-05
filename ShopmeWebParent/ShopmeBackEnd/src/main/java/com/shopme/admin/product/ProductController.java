@@ -69,6 +69,7 @@ public class ProductController {
 	public String saveProduct(Product product, RedirectAttributes ra,
 			@RequestParam("fileImage") MultipartFile mainImageMultipart,
 			@RequestParam("extraImage") MultipartFile[] extraImageMultiparts,
+			@RequestParam(name="detailIDs", required = false) String[] detailIDs,
 			@RequestParam(name="detailNames", required = false) String[] detailNames,
 			@RequestParam(name="detailValues", required = false) String[] detailValues,
 			@RequestParam(name="imageIDs", required = false) String[] imageIDs,
@@ -77,7 +78,7 @@ public class ProductController {
 		setMainImageName(mainImageMultipart, product);
 		setExistingExtraImageNames(imageIDs, imageNames, product);
 		setNewExtraImageName(extraImageMultiparts, product);
-		setProductDetails(detailNames, detailValues, product);
+		setProductDetails(detailIDs, detailNames, detailValues, product);
 			
 		Product savedProduct = productService.save(product);
 		
@@ -126,14 +127,17 @@ public class ProductController {
 		product.setImages(images);
 	}
 
-	private void setProductDetails(String[] detailNames, String[] detailValues, Product product) {
+	private void setProductDetails(String[] detailIDs, String[] detailNames, String[] detailValues, Product product) {
 		if(detailNames == null || detailNames.length == 0) return;
 		
 		for (int i = 0; i < detailNames.length; i++) {
 			String name = detailNames[i];
 			String value = detailValues[i];
+			Integer id = Integer.parseInt(detailIDs[i]);
 			
-			if(!name.isEmpty() && !value.isEmpty()) {
+			if(id != 0) {
+				product.addDetails(id, name, value);
+			} else if(!name.isEmpty() && !value.isEmpty()) {
 				product.addDetails(name, value);
 			}
 		}

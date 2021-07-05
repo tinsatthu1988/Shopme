@@ -76,7 +76,7 @@ public class Product {
 	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<ProductImage> images = new HashSet<>();
 	
-	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<ProductDetail> details = new ArrayList<>();
 
 	public Integer getId() {
@@ -258,6 +258,10 @@ public class Product {
 	
 	public void addDetails(String name, String value) {
 		this.details.add(new ProductDetail(name,value,this));
+	}
+	
+	public void addDetails(Integer id, String name, String value) {
+		this.details.add(new ProductDetail(id, name,value,this));
 	}
 
 	@Transient
