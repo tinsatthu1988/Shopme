@@ -56,10 +56,10 @@ public class Product {
 	@Column(name="discount_percent")
 	private float discountPercent;
 	
-	private String length;
-	private String width;
-	private String height;
-	private String weight;
+	private float length;
+	private float width;
+	private float height;
+	private float weight;
 	
 	@Column(name="main_image", nullable = false)
 	private String mainImage;
@@ -175,35 +175,35 @@ public class Product {
 		this.discountPercent = discountPercent;
 	}
 
-	public String getLength() {
+	public float getLength() {
 		return length;
 	}
 
-	public void setLength(String length) {
+	public void setLength(float length) {
 		this.length = length;
 	}
 
-	public String getWidth() {
+	public float getWidth() {
 		return width;
 	}
 
-	public void setWidth(String width) {
+	public void setWidth(float width) {
 		this.width = width;
 	}
 
-	public String getHeight() {
+	public float getHeight() {
 		return height;
 	}
 
-	public void setHeight(String height) {
+	public void setHeight(float height) {
 		this.height = height;
 	}
 
-	public String getWeight() {
+	public float getWeight() {
 		return weight;
 	}
 
-	public void setWeight(String weight) {
+	public void setWeight(float weight) {
 		this.weight = weight;
 	}
 
