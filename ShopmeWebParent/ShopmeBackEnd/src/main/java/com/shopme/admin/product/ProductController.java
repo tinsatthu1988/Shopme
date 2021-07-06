@@ -58,10 +58,9 @@ public class ProductController {
 				@Param("keyword") String keyword,
 				@Param("categoryId") Integer categoryId
 			) {
-		System.out.println("Selected category ID: " + categoryId);
+
 		Page<Product> page = productService.listByPage(pageNum, sortField, sortDir, keyword, categoryId);
-		List<Product> listProducts = page.getContent();
-		
+		List<Product> listProducts = page.getContent();	
 		List<Category> listCategories = categoryService.listCategoriesUserdInForm();
 		
 		long startCount = (pageNum - 1) * ProductService.PRODUCTS_PER_PAGE + 1;
