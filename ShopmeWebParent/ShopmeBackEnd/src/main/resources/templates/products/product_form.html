@@ -67,6 +67,9 @@
 				  <div class="tab-pane p-3" id="details" role="tabpanel">
 				  	<th:block sec:authorize="hasAnyAuthority('Admin','Editor')">
 				  		<div th:replace="products/product_details :: content"></div>
+				  		<div>
+				  			<input type="button" class="btn btn-secondary" value="Add More Detail" onclick="addNextDetailSection()" />
+				  		</div>
 				  	</th:block>
 				  	<th:block sec:authorize="hasAuthority('Salesperson')">
 				  		<div th:replace="products/product_details_read_only :: content"></div>
