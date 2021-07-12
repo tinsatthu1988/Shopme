@@ -90,7 +90,9 @@ public class CountryRestControllerTests {
 			.andExpect(content().string(String.valueOf(countryId)));
 	
 		Optional<Country> findById = repo.findById(countryId);
+		
 		assertThat(findById.isPresent());
+		
 		Country savedCountry = findById.get();
 
 		assertThat(savedCountry.getName()).isEqualTo(countryName);
