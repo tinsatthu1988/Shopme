@@ -29,7 +29,7 @@ $(document).ready(function(){
 		if(buttonAddCountry.val() == "Add"){
 			addCountry();
 		} else{
-			changeFormStateToNew();
+			changeFormStateToNewCountry();
 		}		
 	});
 	
@@ -49,7 +49,7 @@ function deleteCountry(){
 	
 	$.get(url, function(){
 		$("#dropDownCountries option[value='"+ optionValue + "']").remove();
-		changeFormStateToNew();
+		changeFormStateToNewCountry();
 	}).done(function(){
 		showToastMessage("The country has been deleted");
 	}).fail(function(){
@@ -79,7 +79,7 @@ function updateCountry(){
 		$("#dropDownCountries option:selected").text(countryName);
 		showToastMessage("The country has been updated");
 		
-		changeFormStateToNew();
+		changeFormStateToNewCountry();
 	}).fail(function(){
 		showToastMessage("ERROR: Could not connect to server or server encountered an error");
 	});
@@ -116,7 +116,7 @@ function selectNewlyAddedCountry(countryId, countryCode, countryName){
 	fieldCountryName.val("").focus();
 }
 
-function changeFormStateToNew(){
+function changeFormStateToNewCountry(){
 	buttonAddCountry.val("Add");
 	labelCountryName.text("Country Name:");
 	
