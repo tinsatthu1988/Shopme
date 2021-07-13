@@ -150,7 +150,7 @@ function loadCountries(){
 			$("<option>").val(optionValue).text(country.name).appendTo(dropDownCountry);
 		});
 	}).done(function(){
-		buttonLoad.val("Refesh Country List");
+		buttonLoad.val("Refresh Country List");
 		showToastMessage("All countries have been loaded");
 	}).fail(function(){
 		showToastMessage("ERROR: Could not connect to server or server encountered an error");
